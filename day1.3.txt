@@ -1,0 +1,14 @@
+
+Building image of assigment-dockerfile
+
+> docker build -t assigment01 .
+> docker run -p 80:3000 assignment01
+
+> docker run -d -p 80:3000 assigment01
+> docker stop [container_id]
+> docker ps
+
+> docker build -t assigment01:no_tini .
+> docker run -d -p 80:3000 assigment01:no_tini
+
+> docker run --init -d assigment01:no_ti

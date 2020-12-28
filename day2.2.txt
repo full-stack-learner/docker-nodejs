@@ -1,0 +1,9 @@
+
+Assigment mta
+
+> docker build -t mta .
+> docker run mta
+> docker run -it mta bash
+# ls
+
+Go and see in log folder

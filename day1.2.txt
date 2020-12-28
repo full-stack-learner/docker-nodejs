@@ -1,0 +1,13 @@
+
+> docker build -t centos-node .
+
+> docker run centos-node node --version
+
+Running with non-root user in docker container
+
+> docker build -t usernode .
+
+> docker run -it usernode bash
+
+
+> docker-compose exec -u root

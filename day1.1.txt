@@ -1,0 +1,142 @@
+
+> docker-compose up
+> docker-compose up -d
+> docker-compose up -d --build
+
+WARNING: The Docker Engine you're using is running in swarm mode.
+
+Compose does not use swarm mode to deploy services to multiple nodes in a swarm. All containers will be scheduled on the current node.
+
+To deploy your application across the swarm, use `docker stack deploy`.
+
+Creating network "sample-02_default" with the default driver
+Creating sample-02_web_1 ... done
+
+
+> docker-compose build --no-cache
+
+Building web
+Step 1/7 : FROM node:10-alpine
+ ---> 3e4b7c6e0cb8
+Step 2/7 : EXPOSE 3000
+ ---> Running in 1d856ea141d1
+Removing intermediate container 1d856ea141d1
+ ---> 188646b3aa4f
+Step 3/7 : WORKDIR /usr/src/app
+ ---> Running in 7583c7082f16
+Removing intermediate container 7583c7082f16
+ ---> c7b1bfd1e3fc
+Step 4/7 : COPY package.json package-lock.json* ./
+ ---> be648741563c
+Step 5/7 : RUN npm install && npm cache clean --force
+ ---> Running in 41033fab019c
+
+> core-js@2.6.11 postinstall /usr/src/app/node_modules/core-js
+> node -e "try{require('./postinstall')}catch(e){}"
+
+Thank you for using core-js ( https://github.com/zloirock/core-js ) for polyfilling JavaScript standard library!
+
+The project needs your help! Please consider supporting of core-js on Open Collective or Patreon: 
+> https://opencollective.com/core-js 
+> https://www.patreon.com/zloirock 
+
+Also, the author of core-js ( https://github.com/zloirock ) is looking for a good job -)
+
+added 345 packages from 174 contributors and audited 345 packages in 12.155s
+
+3 packages are looking for funding
+  run `npm fund` for details
+
+found 20 vulnerabilities (19 low, 1 high)
+  run `npm audit fix` to fix them, or `npm audit` for details
+npm WARN using --force I sure hope you know what you are doing.
+Removing intermediate container 41033fab019c
+ ---> 601175fe6e5d
+Step 6/7 : COPY . .
+ ---> 203cde0bb9bf
+Step 7/7 : CMD [ "node", "./bin/www" ]
+ ---> Running in 0b0a3a7c205c
+Removing intermediate container 0b0a3a7c205c
+ ---> bf53f0ee2a11
+
+Successfully built bf53f0ee2a11
+Successfully tagged sample-02:latest
+
+> docker-compose down
+
+Stopping sample-02_web_1 ... done
+Removing sample-02_web_1 ... done
+Removing network sample-02_default
+
+> docker-compose ps
+
+     Name                    Command               State           Ports         
+---------------------------------------------------------------------------------
+sample-02_web_1   docker-entrypoint.sh node  ...   Up      0.0.0.0:3000->3000/tcp
+
+> docker-compose logs
+
+Attaching to sample-02_web_1
+web_1  | GET / 304 60.159 ms - -
+web_1  | GET /stylesheets/style.css 304 3.367 ms - -
+web_1  | GET /images/picard6.gif 304 3.539 ms - -
+web_1  | GET / 200 5.931 ms - 285
+web_1  | GET /stylesheets/style.css 304 0.888 ms - -
+web_1  | GET /images/picard0.gif 304 1.169 ms - -
+web_1  | GET / 304 3.552 ms - -
+web_1  | GET /stylesheets/style.css 304 1.340 ms - -
+web_1  | GET /images/picard0.gif 304 1.517 ms - -
+web_1  | GET / 200 8.289 ms - 285
+web_1  | GET /stylesheets/style.css 304 0.917 ms - -
+web_1  | GET /images/picard1.gif 304 1.296 ms - -
+web_1  | GET / 200 4.570 ms - 285
+web_1  | GET /images/picard0.gif 304 1.121 ms - -
+web_1  | GET /stylesheets/style.css 304 2.202 ms - -
+web_1  | GET / 200 3.297 ms - 285
+web_1  | GET /images/picard7.gif 304 0.889 ms - -
+web_1  | GET /stylesheets/style.css 304 1.887 ms - -
+web_1  | GET / 200 3.678 ms - 285
+web_1  | GET /images/picard6.gif 304 0.699 ms - -
+web_1  | GET /stylesheets/style.css 304 1.296 ms - -
+web_1  | GET / 200 8.613 ms - 285
+web_1  | GET /images/picard2.gif 304 0.625 ms - -
+web_1  | GET /stylesheets/style.css 304 0.977 ms - -
+
+> docker-compose exec web sh
+# apk add --update curl
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
